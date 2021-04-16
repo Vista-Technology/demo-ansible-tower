@@ -1,6 +1,6 @@
 ---
 - name: Installation node exporter on hosts
-  hosts: target
+  hosts: all
   tasks: 
     - name: Copy node_exporter binary on remote host
       copy:
