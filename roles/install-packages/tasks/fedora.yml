@@ -8,15 +8,15 @@
     name: '*'
     state: latest
     exclude: kernel*,foo*
-  when: '{{ packages_upgrade }}'
+  when: packages_upgrade
 
 - name: Install packages
   yum:
-    name: '{{ item.name }}'
-    state: '{{ item.state }}'
-  with_items: "{{ packages_list }}"
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  loop: "{{ packages_list }}"
 
 
 - name: Remove dependencies that are no longer required
-  apt:
+  yum:
     autoremove: "{{ packages_autoremove }}"

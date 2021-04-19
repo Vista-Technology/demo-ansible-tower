@@ -6,13 +6,13 @@
 - name: Upgrade the OS (apt-get full-upgrade)
   apt:
     upgrade: full
-  when: '{{ packages_upgrade }}'
+  when: packages_upgrade
 
 - name: Install packages
   apt:
     name: '{{ item.name }}'
     state: '{{ item.state }}'
-  with_items: "{{ packages_list }}"
+  loop: "{{ packages_list }}"
 
 - name: Remove dependencies that are no longer required
   apt:
