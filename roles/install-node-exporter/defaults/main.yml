@@ -1,0 +1,9 @@
+---
+# defaults file for install-node-exporter
+service_descriptio: Node Exporter
+service_type: simple
+
+account_user: root
+account_group: root
+
+binary_path: /usr/local/bin/node_exporter
