@@ -30,3 +30,10 @@
     - ansible_distribution != "CentOS"
     - ansible_distribution != "Fedora"
     - ansible_distribution != "Ubuntu"
+
+- name: set Prometheus scraping 
+  template:
+    src: prometheus.yml.j2
+    dest: /opt/monitoring/prometheus/prometheus.yaml
+  delegate_to: localhost
+  run_once: true
