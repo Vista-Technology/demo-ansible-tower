@@ -1,0 +1,12 @@
+---
+# defaults file for install-packages
+
+packages_list:
+  - name: vim
+    state: present
+  - name: tree
+    state: present
+
+packages_update: yes
+packages_upgrade: yes
+packages_autoremove: no

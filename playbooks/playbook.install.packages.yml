@@ -1,0 +1,5 @@
+---
+- name: install packages on hosts
+  hosts: all
+  roles:
+    - install-packages

@@ -1,0 +1,22 @@
+---
+- name: execute yum update
+  yum:
+    update_cache: '{{ packages_update }}'
+
+- name: Upgrade all packages, excluding kernel & foo related packages
+  yum:
+    name: '*'
+    state: latest
+    exclude: kernel*,foo*
+  when: '{{ packages_upgrade }}'
+
+- name: Install packages
+  yum:
+    name: '{{ item.name }}'
+    state: '{{ item.state }}'
+  with_items: "{{ packages_list }}"
+
+
+- name: Remove dependencies that are no longer required
+  apt:
+    autoremove: "{{ packages_autoremove }}"
