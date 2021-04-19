@@ -1,23 +1,14 @@
 ---
 # tasks file for install-node-exporter
-- name: Copy node_exporter binary on remote host
-  copy:
-    src: files/node_exporter
-    dest: '{{ binary_path }}'
-    owner: '{{ account_user }}'
-    group: '{{ account_group }}'
-    mode: "751"
-- name: Create node_exporter.service from template on remote host
-  template:
-    src: node_exporter.service.j2
-    dest: /etc/systemd/system/node_exporter.service
-    owner: '{{ account_user }}'
-    group: '{{ account_group }}'
-    mode: "644"
-- name: Start and enable node_exporter service
-  systemd:
-    name: node_exporter.service
-    daemon_reload: yes
-    force: yes
-    enabled: yes
-    state: started
+- name: Ubuntu
+  include_tasks: ubuntu.yml
+  when: 
+    - (ansible_distribution|lower == "ubuntu" and ansible_distribution_major_version == "20.04")
+- name: Fedora
+  include_tasks: fedora.yml
+  when: 
+    - (ansible_distribution|lower == "fedora" and ansible_distribution_major_version == "32")
+- name: Centos 
+  include_tasks: centos.yml
+  when: 
+    - (ansible_distribution|lower == "centos" and ansible_distribution_major_version == "7")
