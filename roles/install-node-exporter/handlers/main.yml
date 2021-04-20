@@ -2,7 +2,7 @@
 # handlers file for install-node-exporter
 
 - name: restart_prometheus
-  shell: whoami && cd /opt/monitoring/ && docker-compose restart prometheus
+  shell: cd /opt/monitoring/ && docker-compose restart prometheus
   delegate_to: localhost
   become: false
   run_once: true
