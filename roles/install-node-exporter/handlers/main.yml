@@ -3,4 +3,6 @@
 
 - name: restart_prometheus
   shell: cd /opt/monitoring/ && docker-compose restart prometheus
+  delegate_to: localhost
   become: false
+  run_once: true
