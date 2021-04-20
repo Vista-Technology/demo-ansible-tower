@@ -1,9 +1,8 @@
 ---
 # handlers file for install-node-exporter
 
-- name: Restart Prometheus
+- name: restart_prometheus
   community.docker.docker_compose:
     project_src: /opt/monitoring/
     project_name: prometheus
     restarted: yes
-

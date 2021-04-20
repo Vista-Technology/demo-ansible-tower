@@ -36,7 +36,8 @@
     src: prometheus.yml.j2
     dest: /opt/monitoring/prometheus/prometheus.yaml
   delegate_to: localhost
+  become: false
   run_once: true
+  notify:
+    - restart_prometheus
 
-- name: Loading new configuration to Prometheus
-  meta: Restart Prometheus
