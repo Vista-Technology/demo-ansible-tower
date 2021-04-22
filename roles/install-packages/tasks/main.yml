@@ -1,32 +1,8 @@
 ---
-# tasks file for install-node-exporter
-- name: DEBUG ansible_distribution
-  debug:
-    var: ansible_distribution
-    verbosity: 3
-- name: DEBUG ansible_distribution_major_version
-  debug:
-    var: ansible_distribution_version
-    verbosity: 3
-- name: Ubuntu
-  include_tasks: ubuntu.yml
-  when: 
-    - ansible_distribution == "Ubuntu"
-    - ansible_distribution_version == "20.04"
-- name: Fedora
-  include_tasks: fedora.yml
-  when: 
-    - ansible_distribution == "Fedora"
-    - ansible_distribution_major_version == "32"
-- name: Centos
-  include_tasks: centos.yml
-  when: 
-    - ansible_distribution == "CentOS"
-    - ansible_distribution_major_version == "7"
-- name: Not Supported Distribution
-  debug:
-    msg: selected distribution ({{ansible_distribution}}) not supported!
-  when: 
-    - ansible_distribution != "CentOS"
-    - ansible_distribution != "Fedora"
-    - ansible_distribution != "Ubuntu"
+# tasks file for install-packages
+
+- name: Install packages
+  package:
+    name: '{{ item.name }}'
+    state: '{{ item.state }}'
+  loop: "{{ packages_list }}"

@@ -1,6 +1,6 @@
 ---
 # defaults file for install-packages
-#
+
 packages_list:
   - name: vim
     state: present
@@ -9,3 +9,4 @@ packages_list:
 
 packages_update: yes
 packages_upgrade: yes
+packages_autoremove: no
