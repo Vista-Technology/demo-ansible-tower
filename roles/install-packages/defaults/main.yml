@@ -6,6 +6,3 @@ packages_list:
     state: present
   - name: tree
     state: present
-
-packages_update: yes
-packages_upgrade: yes
